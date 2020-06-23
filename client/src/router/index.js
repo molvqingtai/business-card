@@ -10,9 +10,10 @@ Vue.use(Router)
 
 const routes = [
   {
-    path: '/',
+    path: '/card/:id',
     name: 'Card',
-    component: VCard
+    component: VCard,
+    props: true
   },
   {
     path: '/admin',

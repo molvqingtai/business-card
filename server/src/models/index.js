@@ -1,8 +1,9 @@
-const { mongoDB } = require('../config')
 const mongoose = require('mongoose')
-const User = require('./user-info')
+const { mongoDB } = require('../config')
 
-mongoose.connect(`mongodb://${mongoDB.host}/${mongoDB.database}`)
+const CONNECT_URL = `mongodb://${mongoDB.username}:${mongoDB.password}@${mongoDB.host}:${mongoDB.port}/${mongoDB.database}`
+mongoose.connect(CONNECT_URL)
+
 const db = mongoose.connection
 
 db.once('open', () => {
@@ -17,6 +18,22 @@ db.on('error', () => {
   console.log('MongoDB connected fail!')
 })
 
+const createModel = (name, types) => mongoose.model(name, new mongoose.Schema(types))
+
+const Admin = createModel('Admin', {
+  username: String,
+  password: String
+})
+
+const User = createModel('User', {
+  name: String,
+  post: String,
+  index: String,
+  phone: String,
+  address: String
+})
+
 module.exports = {
+  Admin,
   User
 }

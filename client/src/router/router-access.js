@@ -2,7 +2,7 @@ import store from '@/store'
 import isEmpty from '@/utils/is-empty.js'
 
 const hasLogin = () => {
-  return !isEmpty(store.getters.userInfo)
+  return !isEmpty(store.getters.token)
 }
 
 const routerAccess = (to, form, next) => {

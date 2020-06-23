@@ -1,30 +1,30 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { signIn } from '../api'
 import LocalStorage from '@/utils/local-storage.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userInfo: null
+    token: null
   },
   mutations: {
-    updateUserInfo (state, userInfo) {
-      state.userInfo = userInfo
-      LocalStorage.setItem({ userInfo })
+    updateToken (state, token) {
+      state.token = token
+      LocalStorage.setItem('token', token)
     }
   },
   actions: {
-    async fetchUserInfo ({ commit }) {
-      const userInfo = await Promise.resolve({
-        token: 12345678
-      })
-      commit('updateUserInfo', userInfo)
+    async login ({ commit }, userInfo) {
+      const token = await signIn(userInfo)
+      commit('updateToken', token)
+      return token
     }
   },
   getters: {
-    userInfo ({ userInfo }) {
-      return userInfo || LocalStorage.getItem('userInfo')
+    token ({ token }) {
+      return token || LocalStorage.getItem('token')
     }
   }
 })

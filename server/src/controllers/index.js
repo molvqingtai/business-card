@@ -1,28 +1,62 @@
-const { User } = require('../services')
+const Services = require('../services')
+const models = require('../models')
+const hash = require('../utils/hash')
 
-const getUserInfo = async ctx => {
-  const userInfo = await User.findOne({ name: '吴映翰' })
-  console.log(userInfo)
+class Admin extends Services {
+  constructor () {
+    super(models.Admin)
+    this.signIn = this.signIn.bind(this)
+  }
 
-  ctx.body = {
-    success: true,
-    data: userInfo
+  async signIn (ctx) {
+    console.log(this.findOne)
+    const adminInfo = await this.findOne({ username: ctx.request.body.username })
+
+    if (adminInfo) {
+      const passwordHash = hash(ctx.request.body.password)
+      const status = passwordHash === adminInfo.password
+      if (status) {
+        ctx.body = {
+          code: 200,
+          message: '登录成功！',
+          data: true
+        }
+      } else {
+        ctx.body = {
+          code: 401,
+          message: '密码错误，请重试！',
+          data: null
+        }
+      }
+    } else {
+      ctx.body = {
+        code: 400,
+        message: '登录失败，没有此用户！',
+        data: null
+      }
+    }
   }
 }
 
-const saveUserInfo = async ctx => {
-  const data = await User.create({
-    name: '屈警犬',
-    level: '摄影师',
-    jobIndex: '0005',
-    phone: '13551294010',
-    email: 'molvqingtai@gmail.com',
-    address: '成都市锦江区牛市口通宝街财富中心 1609 号'
-  })
-  console.log(data)
+class User extends Services {
+  constructor () {
+    super(models.User)
+    this.getUserInfo = this.getUserInfo.bind(this)
+  }
+
+  async getUserInfo (ctx) {
+    const userInfo = await this.findOne({ name: ctx.query.id })
+    ctx.body = {
+      data: userInfo
+    }
+  }
+
+  saveUserInfo (ctx) {
+
+  }
 }
 
 module.exports = {
-  getUserInfo,
-  saveUserInfo
+  admin: new Admin(),
+  user: new User()
 }
