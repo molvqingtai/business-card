@@ -1,29 +1,54 @@
 const Koa = require('koa')
 const bodyparser = require('koa-bodyparser')
+const serve = require('koa-static')
 const logger = require('koa-logger')
 const mongoose = require('mongoose')
 const jwt = require('koa-jwt')
-const CONFIG = require('./config')
 const { responseTime, errorHandler } = require('./middleware')
 const { v1 } = require('./services')
+const path = require('path')
 
 const app = new Koa()
 
+/**
+ * 日志
+ */
 app.use(logger())
 
-app.use(bodyparser())
-
-// Set header with API response time
+/**
+ * 设置响应时间
+ */
 app.use(responseTime)
 
-app.use(errorHandler)
-app.use(jwt({ secret: 'molvqingtai' }).unless({ path: [/\/signin/, /\/signup/, /\/users/] }))
+/**
+ * 解析 body
+ */
+app.use(bodyparser())
 
+/**
+ * 设置静态服务器
+ */
+app.use(serve(path.resolve(__dirname, './public')))
+
+/**
+ * 错误捕获
+ */
+app.use(errorHandler)
+
+/**
+ * 使用 JWT 验证
+ */
+app.use(jwt({ secret: process.env.JWT_SECRET }).unless({ path: [/\/signin/, /\/signup/, /\/info/, /\/public/] }))
+
+/**
+ * 使用路由
+ */
 app.use(v1.routes())
 
-const DBURL = 'mongodb://business-card:YnVzaW5lc3MtY2FyZA@47.100.199.71:27017/business-card'
-
-mongoose.connect(DBURL, {
+/**
+ * 连接数据库
+ */
+mongoose.connect(process.env.DB_URL, {
   useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -45,6 +70,9 @@ db.on('disconnected', () => {
   console.info('Mongo disconnected')
 })
 
-app.listen(CONFIG.port, e => {
-  console.log(`🚀 App starting at http://localhost:${CONFIG.port}`)
+/**
+ * 起飞！！！
+ */
+app.listen(process.env.PORT, e => {
+  console.log(`🚀 App starting at http://localhost:${process.env.PORT}`)
 })

@@ -1,13 +1,10 @@
 /**
- * Return header with response time
- *
- * @param   {Object}    ctx   Koa context
- * @param   {Function}  next  Next middleware
- * @returns {Promise}
+ * 响应时间中间件
+ * @param {*} ctx
+ * @param {*} next
  */
 module.exports = async (ctx, next) => {
   const start = Date.now()
   await next()
-  const ms = Date.now() - start
-  ctx.set('response-time', `${ms}ms`)
+  ctx.set('response-time', `${Date.now() - start}ms`)
 }
