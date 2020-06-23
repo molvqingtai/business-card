@@ -5,21 +5,32 @@
 
 
 
+### Install
+
+**client**
+
+```
+cd client && npm install
+```
+**server**
+
+```
+cd server && npm install
+```
+
+
+
 ### Run
 
 **client**
 
 ``` shell
-cd client
-npm install
-npm run serve
+cd client && npm run serve
 ```
 
 **server**
 
 ```shell
-cd server 
-npm install
-npm start
+cd server && npm start
 ```
 
