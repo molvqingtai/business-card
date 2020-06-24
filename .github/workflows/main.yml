@@ -42,5 +42,5 @@ jobs:
         host: ${{secrets.HOST}} 
         username: ${{secrets.USERNAME}}
         key: ${{secrets.ID_RSA}} 
-        source: $GITHUB_WORKSPACE
+        source: './'
         target: "test"
