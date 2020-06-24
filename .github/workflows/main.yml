@@ -45,7 +45,7 @@ jobs:
         source: './'
         target: "Applications/business-card"
     
-    # 重启服务
+    # 构建 & 重启
     - name: Build & Restart
       uses: appleboy/ssh-action@master  
       with:
