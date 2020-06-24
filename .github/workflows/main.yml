@@ -46,11 +46,11 @@ jobs:
         target: "Applications/business-card"
     
     # 重启服务
-    - name: Restart
-      uses: appleboy/ssh-action@master  
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{secrets.ID_RSA}} 
-        script: |
-        cd ~/Applications/business-card/client && npm install && npm run build
+    # - name: Restart
+    #   uses: appleboy/ssh-action@master  
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.USERNAME }}
+    #     key: ${{secrets.ID_RSA}} 
+    #     script: |
+    #     cd ~/Applications/business-card/client && npm install && npm run build
