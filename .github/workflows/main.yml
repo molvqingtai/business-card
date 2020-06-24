@@ -21,25 +21,28 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     
+    # 使用 node
     - name: Use node
       uses: actions/setup-node@master
       with:
         node-version: '12'
-        
-    # 安装
+
+    # 安装依赖
     - name: Install
       run: |
-        cd $GITHUB_WORKSPACE/client && npm install
-        cd $GITHUB_WORKSPACE/server && npm install
+        cd client && npm install
+        cd server && npm install
 
+    # 打包 Client
     - name: Build
       run: |
         cd $GITHUB_WORKSPACE/client && npm run build
-      
+    
+    # 上传服务器
     - name: Deploy
       uses: easingthemes/ssh-deploy@master
       env:
         REMOTE_HOST: 47.100.199.71
         REMOTE_USER: root
         SSH_PRIVATE_KEY: ${{secrets.ACCESS_TOKEN}} 
-        SOURCE: $GITHUB_WORKSPACE/client/dist
+        SOURCE: client/dist
