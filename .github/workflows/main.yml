@@ -54,4 +54,4 @@ jobs:
         key: ${{secrets.ID_RSA}} 
         script: |
         cd ~/Applications/business-card/client && npm install && npm run build
-        service nginx restart
+        
