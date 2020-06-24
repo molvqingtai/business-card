@@ -1,9 +1,6 @@
-# This is a basic workflow to help you get started with Actions
 
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [ master ]
@@ -30,8 +27,8 @@ jobs:
     # 安装依赖
     - name: Install
       run: |
-        cd client && npm install
-        cd server && npm install
+        cd $GITHUB_WORKSPACE/client && npm install
+        cd $GITHUB_WORKSPACE/server && npm install
 
     # 打包 Client
     - name: Build
@@ -45,4 +42,4 @@ jobs:
         REMOTE_HOST: 47.100.199.71
         REMOTE_USER: root
         SSH_PRIVATE_KEY: ${{secrets.ACCESS_TOKEN}} 
-        SOURCE: client/dist
+        SOURCE: $GITHUB_WORKSPACE/client/dist
