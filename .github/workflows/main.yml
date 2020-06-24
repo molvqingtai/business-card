@@ -45,8 +45,8 @@ jobs:
         source: './'
         target: "Applications/business-card"
     
-    # 构建 & 重启
-    - name: Build & Restart
+    # 构建应用
+    - name: Build
       uses: appleboy/ssh-action@master  
       with:
         host: ${{ secrets.HOST }}
@@ -55,4 +55,4 @@ jobs:
         script: |
           cd ~/Applications/business-card/client && npm install && npm run build
           cd ~/Applications/business-card/server && npm install
-          service nginx restart
+          
