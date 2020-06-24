@@ -39,7 +39,7 @@ jobs:
     - name: Deploy
       uses: easingthemes/ssh-deploy@master
       env:
-        REMOTE_HOST: 47.100.199.71
-        REMOTE_USER: root
-        SSH_PRIVATE_KEY: ${{secrets.ACCESS_TOKEN}} 
+        REMOTE_HOST: ${{secrets.HOST}} 
+        REMOTE_USER: ${{secrets.USER}}
+        SSH_PRIVATE_KEY: ${{secrets.ID_RSA}} 
         SOURCE: $GITHUB_WORKSPACE/client/dist
