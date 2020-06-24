@@ -27,13 +27,13 @@ jobs:
     # 安装依赖
     - name: Install
       run: |
-        cd $GITHUB_WORKSPACE/client && npm install
-        cd $GITHUB_WORKSPACE/server && npm install
+        cd /client && npm install
+        cd /server && npm install
 
     # 打包 Client
     - name: Build
       run: |
-        cd $GITHUB_WORKSPACE/client && npm run build
+        cd /client && npm run build
     
     # 上传服务器
     - name: Upload
