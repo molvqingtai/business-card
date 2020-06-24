@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    # 虚拟机环境
+    # 虚拟环境
     runs-on: ubuntu-latest
 
     steps:
@@ -27,15 +27,15 @@ jobs:
     # 安装依赖
     - name: Install
       run: |
-        cd /client && npm install
-        cd /server && npm install
+        cd $GITHUB_WORKSPACE/client && npm install
+        cd $GITHUB_WORKSPACE/server && npm install
 
-    # 打包 Client
+    # 打包应用
     - name: Build
       run: |
-        cd /client && npm run build
+        cd $GITHUB_WORKSPACE/client && npm run build
     
-    # 上传服务器
+    # 上传文件
     - name: Upload
       uses: appleboy/scp-action@master
       with:
@@ -44,3 +44,12 @@ jobs:
         key: ${{secrets.ID_RSA}} 
         source: './'
         target: "test"
+    
+    # 重启服务
+    - name: Restart
+      uses: appleboy/ssh-action@master  
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: service nginx restart
