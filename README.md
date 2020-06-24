@@ -1,5 +1,5 @@
-# business-card    ![GithubActions](https://github.com/molvqingtai/business-card /workflows/build/badge.svg)
-
+# business-card    
+![GithubActions](https://github.com/molvqingtai/business-card /workflows/build/badge.svg)
 
 电子名片
 
