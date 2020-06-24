@@ -24,12 +24,12 @@ jobs:
     # 安装
     - name: Install
       run: |
-        cd clinet && npm install
-        cd server && npm install
+        cd $GITHUB_WORKSPACE/clinet && npm install
+        cd $GITHUB_WORKSPACE/server && npm install
 
     - name: Build
       run: |
-        cd clinet && npm run build
+        cd $GITHUB_WORKSPACE/clinet && npm run build
       
     - name: Deploy
       uses: easingthemes/ssh-deploy@master
