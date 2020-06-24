@@ -24,12 +24,12 @@ jobs:
     # 安装
     - name: Install
       run: |
-        cd $GITHUB_WORKSPACE/clinet && npm install
+        cd $GITHUB_WORKSPACE/client && npm install
         cd $GITHUB_WORKSPACE/server && npm install
 
     - name: Build
       run: |
-        cd $GITHUB_WORKSPACE/clinet && npm run build
+        cd $GITHUB_WORKSPACE/client && npm run build
       
     - name: Deploy
       uses: easingthemes/ssh-deploy@master
@@ -37,4 +37,4 @@ jobs:
         REMOTE_HOST: 47.100.199.71
         REMOTE_USER: root
         SSH_PRIVATE_KEY: ${{secrets.ACCESS_TOKEN}} 
-        SOURCE: client/dist
+        SOURCE: $GITHUB_WORKSPACE/client/dist
