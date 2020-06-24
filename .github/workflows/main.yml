@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # 虚拟机环境
+    runs-on: ubuntu-latest
+
+    steps:
+    # 获取源码
+    - name: Checkout
+    - uses: actions/checkout@v2
+
+    # 安装
+    - name: Install
+      run: |
+        cd clinet && npm install
+        cd server && npm install
+
+    - name: Build
+      run: |
+        cd clinet && npm run build
+      
+    - name: Deploy
+      uses: easingthemes/ssh-deploy@master
+      env:
+        REMOTE_HOST: 47.100.199.71
+        REMOTE_USER: root
+        SSH_PRIVATE_KEY: ${{secrets.ACCESS_TOKEN}} 
+        SOURCE: client/dist
