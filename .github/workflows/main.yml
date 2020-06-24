@@ -20,7 +20,12 @@ jobs:
     # 获取源码
     - name: Checkout
       uses: actions/checkout@v2
-
+    
+    - name: Use node
+      uses: actions/setup-node@master
+      with:
+        node-version: '12'
+        
     # 安装
     - name: Install
       run: |
