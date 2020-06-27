@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node -r dotenv/config src/app.js",
-    "dev": "nodemon -r dotenv/config --inspect src/app.js",
+    "start": "node src/app.js",
+    "dev": "nodemon --inspect src/app.js",
     "lint": "eslint \"src/**/*.js\" --fix",
     "clean": "rm -rf node_modules dist"
   },
@@ -29,7 +29,6 @@
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
-    "dotenv": "^8.2.0",
     "eslint": "^7.1.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
