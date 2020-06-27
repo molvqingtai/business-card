@@ -20,6 +20,10 @@ jobs:
     
     - name: Lint
       uses: docker://github/super-linter:v2.2.0
+        env:
+          VALIDATE_ENV: false
+          VALIDATE_CSS: false
+
 
     # 使用 node
     # - name: Use node
