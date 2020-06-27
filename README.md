@@ -1,4 +1,4 @@
-# business-card [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![GithubActions](https://github.com/molvqingtai/business-card/workflows/CI/CD/badge.svg)](https://github.com/molvqingtai/business-card/actions)
+# business-card [![GithubActions](https://github.com/molvqingtai/business-card/workflows/CI/CD/badge.svg)](https://github.com/molvqingtai/business-card/actions) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 电子名片
 

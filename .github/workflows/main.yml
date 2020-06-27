@@ -50,6 +50,7 @@ jobs:
         key: ${{secrets.ID_RSA}} 
         source: './'
         target: "Applications/business-card"
+        overwrite: true
     
     # 构建应用
     - name: Build
@@ -57,7 +58,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{secrets.ID_RSA}} 
+        key: ${{secrets.ID_RSA}}
         script: |
           cd ~/Applications/business-card/client && npm install && npm run build
           cd ~/Applications/business-card/server && npm install
