@@ -1,4 +1,5 @@
-# business-card ![GithubActions](https://github.com/molvqingtai/business-card/workflows/CI/CD/badge.svg)
+# business-card [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![GithubActions](https://github.com/molvqingtai/business-card/workflows/CI/CD/badge.svg)](https://github.com/molvqingtai/business-card/actions)
+
 电子名片
 
 > 技术栈：Vue + Koa + MongoDB
