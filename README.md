@@ -1,4 +1,4 @@
-# business-card ![GithubActions](https://github.com/molvqingtai/business-card/workflows/CI/badge.svg)
+# business-card ![GithubActions](https://github.com/molvqingtai/business-card/workflows/CI/CD/badge.svg)
 电子名片
 
 > 技术栈：Vue + Koa + MongoDB
