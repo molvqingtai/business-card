@@ -1,7 +1,7 @@
 <template>
   <div ref="qr-code" class="flex flex-col justify-center items-center p-10">
     <img :src="dataUrl" class="mb-5">
-    <p class="bg-orange-200 text-orange-400 rounded-md text-xs py-1 px-2">{{url}}</p>
+    <a :href="url" class="bg-orange-200 text-orange-400 rounded-md text-xs py-1 px-2 hover:underline">{{url}}</a>
   </div>
 </template>
 
