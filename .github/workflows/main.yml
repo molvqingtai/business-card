@@ -24,7 +24,6 @@ jobs:
           VALIDATE_ENV: false
           VALIDATE_CSS: false
 
-
     # 使用 node
     # - name: Use node
     #   uses: actions/setup-node@master
