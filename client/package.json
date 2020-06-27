@@ -52,6 +52,9 @@
   "lint-staged": {
     "*.{js,jsx,vue}": [
       "vue-cli-service lint"
+    ],
+    "*.{css,less,scss,sass,vue}": [
+      "stylelint --fix"
     ]
   }
 }
