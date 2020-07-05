@@ -38,7 +38,11 @@ app.use(errorHandler)
 /**
  * 使用 JWT 验证
  */
-app.use(jwt({ secret: process.env.JWT_SECRET }).unless({ path: [/\/signin/, /\/signup/, /\/info/, /\/public/] }))
+app.use(
+  jwt({ secret: process.env.JWT_SECRET }).unless(
+    { path: [/\/signin/, /\/signup/, /\/info/, /\/public/] }
+  )
+)
 
 /**
  * 使用路由
@@ -73,6 +77,6 @@ db.on('disconnected', () => {
 /**
  * 起飞！！！
  */
-app.listen(process.env.PORT, e => {
+app.listen(process.env.PORT, (e) => {
   console.log(`🚀 App starting at http://localhost:${process.env.PORT}`)
 })
