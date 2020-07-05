@@ -414,7 +414,7 @@ export default {
      * 打开二维码 Modal
      */
     handleOpenQRCode (id, name) {
-      this.url = `${location.origin}/#/card/${id}`
+      this.url = `${location.origin}/card/${id}`
       this.showQRCodeModal = true
       this.$on('confirm', async e => {
         await this.downloadQRCode(this.url, name)
