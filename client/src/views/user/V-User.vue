@@ -67,10 +67,12 @@
       <p class="text-gray-600 leading-10 text-lg">请扫描公众号，联系管理员</p>
       <img src="@/assets/images/qrcode-public.jpg" class="w-4/12 mt-10 rounded-md" />
     </div>
+    <v-loading v-if="loading"></v-loading>
   </div>
 </template>
 
 <script>
+import VLoading from '@/common/V-Loading.vue'
 import { getUserInfo } from '@/api'
 export default {
   name: 'VCard',
@@ -84,8 +86,12 @@ export default {
 
   data () {
     return {
-      userInfo: null // 用户信息
+      userInfo: null, // 用户信息
+      loading: false
     }
+  },
+  components: {
+    VLoading
   },
   methods: {
     /**
@@ -94,7 +100,9 @@ export default {
     async getUserInfo () {
       try {
         if (this.id) {
+          this.loading = true
           this.userInfo = (await getUserInfo({ id: this.id })) || {}
+          this.loading = false
         } else {
           this.$toast.error('错误，请扫描二维码！')
         }
